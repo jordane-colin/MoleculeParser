@@ -1,6 +1,6 @@
 import unittest
 
-from main import parse_molecule
+from parser import parse_molecule
 
 MOLECULES = (
     ('H2O', {'H': 2, 'O': 1}),
@@ -11,6 +11,11 @@ MOLECULES = (
 
 NOT_BALANCED_MOLECULES = (
     'C12[{H22]}O11',
+    'C12[{H22O11',
+)
+
+WRONG_MOLECULES = (
+    ('C12$! O11', {'C': 12, 'O': 11}),
 )
 
 MISCALCULATED_MOLECULES = (
@@ -20,6 +25,11 @@ MISCALCULATED_MOLECULES = (
 
 
 class TestParseMolecule(unittest.TestCase):
+
+    def test_parse_wrong_molecule(self):
+        for item, response in WRONG_MOLECULES:
+            element = parse_molecule(item)
+            self.assertDictEqual(element, response)
 
     def test_parse_molecule(self):
         for item, response in MOLECULES:

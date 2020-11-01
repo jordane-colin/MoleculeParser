@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from main import parse_molecule
+from parser import parse_molecule
 
 MOLECULES = (
     ('Water', 'H2O'),

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <title>BackMolecule</title>
+</head>
+<body>
+    <header></header>
+    <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h1>BackMolecule</h1>
+                    {% if error %}
+                        <span class="error">{{ error }}</span><br/>
+                    {% endif %}
+                    {% if submitted_formula is defined and submitted_formula %}
+                        <div class="response">
+                            <h2 class="title">Your formula</h2>
+                            <span>{{ submitted_formula }}</span><br/>
+                        </div>
+                    {% endif %}
+
+                    <h2 class="title">Parse your own formula</h2>
+                    <form>
+                        <div class="input-group">
+                            <input class="input--style-3" type="text" placeholder="Formula" name="formula">
+                        </div>
+                        <div class="p-t-10">
+                            <button class="btn btn--pill btn--green" type="submit">Submit</button>
+                        </div>
+                    </form>
+                    <div class="check-list">
+                        <ul>
+                        {% for name, value in molecules.items() %}
+                            <li><u>{{ name }}</u> : {{ value }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
